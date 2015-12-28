@@ -1,0 +1,4 @@
+.background-pattern {
+  background-image:  url("../../footer_lodyas.jpg");
+  background-color: transparent;
+}

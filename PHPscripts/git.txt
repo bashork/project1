@@ -1,0 +1,18 @@
+GIT  is a distributed vestion control and 
+file management system -- every developer has a copy of project.
+
+
+Why version control :
+1.Made a change to code and need to revert back to a known good state
+2.Have to maintain multiple versions of the software
+3.Wanted to see the difference between two revisions
+4.Wanted to see howq long a bug existed for.
+5.Wanted to experiment without interfering with working code.
+
+
+AS you make modifications in your code - at some moment you want to make a snapshot. 
+You send it into Index(cache) by add command.
+after you can send it into your local repository by commit command.
+After - by push to remote repository.
+
+

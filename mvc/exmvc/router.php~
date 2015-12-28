@@ -1,0 +1,63 @@
+<?php 
+class Router
+{
+	private $routes; # свойство класса
+	public function __construct() #метод конструктор
+{
+		$routesPath = ROOT.'/config/routes.php'; // путь к дирректории
+		$this->routes = include($routesPath); // присваиваем свойсву routes массив в файле routes.php
+}
+//Получить строку запроса
+public function getURI(){	
+
+		if(!empty($_SERVER['REQUEST_URI'])){
+			$uri = trim($_SERVER['REQUEST_URI'],'/');
+			print_r($uri);
+		}
+}
+	public function run()
+	{
+	//print_r($this->routes); // вывести массив 	
+	
+	//Получить строку запроса
+	$uri=$this->getURI();
+	echo $uri;
+
+	//Проверить наличие такого запроса в routes.php
+	//если есть совпадение определить какой контроллер и метод обрабатывают запрос
+	foreach ($this->routes as $uriPattern => $RoutesPath) //пройти через ассоц массив  с помощью foreach
+	{
+		
+	
+	if(preg_match('~$uriPattern~', $uri)) // тильда вместо слешей
+		{
+		echo "Pattern found,";
+		$segments = explode('/', $routesPath);
+
+		$controllerName = array_shift($segments).'Controller'; // array_shift удаляет первое значение массива, плюс приписываем Controller
+		
+		$controllerName = ucfirst($controllerName); // upper case first letter
+		$actionName = 'action'. ucfirst(array_shift($segments));
+		echo 'controller Name: '. $controllerName;
+		echo '<br>action name: '. $actionName;
+		$parameters = $segments;
+		echo "<pre>";
+		print_r($parameters);
+				//подключить файл класса-контроллера
+		$controllerFile = ROOT.'/controllers/'.$controllerName . '.php';
+		if(file_exists($controllerFile)){
+			include_once($controllerFile);
+		}
+		//создать объект этого класса-контроллера и  вызвать нужный метод 
+		$ontrollerObject = new $controllerName;
+		$result = $controllerObject->$actionName();
+		if($result !=null){
+			break;
+		}
+		}
+	}
+
+	}
+
+}
+?>

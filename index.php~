@@ -1,0 +1,48 @@
+<html>
+<head>
+	
+<title>Konspektid</title>
+
+</head>
+<body background = 'footer_lodyas.jpg'  bgcolor="#333333"> 
+  <
+<?php 
+require_once 'header2.inc.php';
+require 'StartSession.php';
+//include '/cookies/cookie1.php';
+?>
+    <div class="container">
+
+      <!-- Banner at the top of the site -->
+      <div class="jumbotron">
+        <h1>Vaheta konspekte vabalt!</h1>
+        <h3><b>Kõik ühes kohas.</b></h3>
+        <p>Kiire ja võimekas võimalus koosta ja jagada oma teadmisi teistega tudengitega. </p>
+       <!-- search-box from outer file-->
+        <p><?php require_once 'search.php';?> </p>
+        <p><br> Või <br> 
+                <!-- take-a-tour -->
+          <a class="btn btn-lg btn-primary" href="bootstrap/components/#navbar" role="button" align = 'left'>
+          	take-a-tour
+          	<span class = 'glyphicon glyphicon-arrow-right'></span>
+          </a>
+        </p>
+      </div>
+
+      <!-- news at the bottom of the site -->
+<div class='news'>
+<div class="row">
+ <?php include 'news/thumbnail2.php'; ?>
+ <?php include 'news/thumbnail2.php'; ?>
+ <?php include 'news/thumbnail2.php'; ?>
+</div>
+</div>
+
+<p>Your browser and system are : </p>
+<?php include_once  'UserBrowser.php'; ?>
+
+
+            <!-- footer with logo -->
+   <footer><p align = 'center'> Powered by <span class = 'glyphicon glyphicon-headphones'></span>Mr. Pjotr Leškin</p></footer>
+</body>
+</html>
